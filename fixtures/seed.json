@@ -1,0 +1,7 @@
+{
+  "project": "传统技艺学徒成长档案",
+  "records": [
+    {"id": "studio-shaomai-01", "kind": "studio", "craft": "烧麦制作", "mentor_slots": 4, "required_skills": ["擀皮", "二十四褶", "蒸制"]},
+    {"id": "course-2026-fall", "kind": "course", "school": "东城技能培训学校", "stages": ["观察", "跟做", "独立制作"], "employment_linked": true}
+  ]
+}
