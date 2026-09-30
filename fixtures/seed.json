@@ -1,7 +1,51 @@
 {
   "project": "传统技艺学徒成长档案",
+  "description": "老字号大师工作室与技能学校共用的成长与岗位衔接样例：证据各带来源、能力联合认定、规则版本化、授权可携带、排班自动重算。",
   "records": [
-    {"id": "studio-shaomai-01", "kind": "studio", "craft": "烧麦制作", "mentor_slots": 4, "required_skills": ["擀皮", "二十四褶", "蒸制"]},
-    {"id": "course-2026-fall", "kind": "course", "school": "东城技能培训学校", "stages": ["观察", "跟做", "独立制作"], "employment_linked": true}
+    {"id": "org-school-dongcheng", "kind": "org", "org_type": "school", "name": "东城技能培训学校"},
+    {"id": "org-studio-laofengtai", "kind": "org", "org_type": "studio", "name": "老奉泰大师工作室"},
+    {"id": "org-studio-xicheng", "kind": "org", "org_type": "studio", "name": "西城点心工作室"},
+
+    {"id": "rule-v1", "kind": "rule", "version": "rule-v1", "at": "2026-01-01T09:00:00Z"},
+
+    {"id": "studio-shaomai-01", "kind": "studio", "org_id": "org-studio-laofengtai", "name": "老奉泰·烧麦工坊", "craft": "烧麦制作", "mentor_slots": 4, "required_skills": ["擀皮", "二十四褶", "蒸制"], "at": "2026-01-05T09:00:00Z"},
+    {"id": "course-2026-fall", "kind": "course", "school_org_id": "org-school-dongcheng", "title": "烧麦制作定制课程（2026秋）", "stages": ["观察", "跟做", "独立制作"], "objectives": ["擀皮", "二十四褶", "蒸制", "食品安全合规"], "at": "2026-01-10T09:00:00Z"},
+
+    {"id": "person-mentor-li", "kind": "person", "name": "李师傅", "org_id": "org-studio-laofengtai", "contact": {"phone": "139-0000-0001", "address": "工坊内部宿舍"}, "at": "2026-01-06T09:00:00Z"},
+    {"id": "mentoring-li", "kind": "mentor_appointment", "studio_id": "studio-shaomai-01", "person_id": "person-mentor-li", "at": "2026-01-06T10:00:00Z"},
+
+    {"id": "person-apprentice-sui", "kind": "person", "name": "阿穗", "org_id": "org-school-dongcheng", "contact": {"phone": "139-0000-0002", "guardian": "苏女士"}, "at": "2026-02-01T09:00:00Z"},
+    {"id": "person-apprentice-bing", "kind": "person", "name": "阿炳", "org_id": "org-school-dongcheng", "contact": {"phone": "139-0000-0003"}, "at": "2026-02-01T09:00:00Z"},
+    {"id": "person-apprentice-jie", "kind": "person", "name": "师姐何秀", "org_id": "org-studio-laofengtai", "contact": {"phone": "139-0000-0004"}, "at": "2026-02-01T09:00:00Z"},
+
+    {"id": "position-production", "kind": "position", "studio_id": "studio-shaomai-01", "title": "烧麦生产班", "required_skills": ["擀皮", "二十四褶", "蒸制"], "at": "2026-02-05T09:00:00Z"},
+
+    {"id": "ev-sui-ganpi-grade", "kind": "evidence", "evidence_id": "ev-sui-ganpi-grade", "person_id": "person-apprentice-sui", "unit": "擀皮", "source_type": "school_grade", "org_id": "org-school-dongcheng", "course_id": "course-2026-fall", "stage": "独立制作", "grade": "A", "rule_version": "rule-v1", "observed_at": "2026-05-10T10:00:00Z", "at": "2026-05-10T10:00:00Z"},
+    {"id": "ev-sui-ganpi-obs", "kind": "evidence", "evidence_id": "ev-sui-ganpi-obs", "person_id": "person-apprentice-sui", "unit": "擀皮", "source_type": "mentor_observation", "org_id": "org-studio-laofengtai", "visibility": "public", "work_title": "日常擀皮观察记录", "rule_version": "rule-v1", "observed_at": "2026-05-20T10:00:00Z", "at": "2026-05-20T10:00:00Z"},
+
+    {"id": "ev-sui-zhe-grade", "kind": "evidence", "evidence_id": "ev-sui-zhe-grade", "person_id": "person-apprentice-sui", "unit": "二十四褶", "source_type": "school_grade", "org_id": "org-school-dongcheng", "course_id": "course-2026-fall", "stage": "独立制作", "grade": "A", "rule_version": "rule-v1", "observed_at": "2026-06-01T10:00:00Z", "at": "2026-06-01T10:00:00Z"},
+    {"id": "ev-sui-zhe-work", "kind": "evidence", "evidence_id": "ev-sui-zhe-work", "person_id": "person-apprentice-sui", "unit": "二十四褶", "source_type": "shop_work", "org_id": "org-studio-laofengtai", "work_id": "work-20260608-01", "work_title": "二十四褶烧麦出屉样品", "contribution": "独立完成二十四道捏褶成型；师姐负责调馅与备料", "collaborators": ["person-apprentice-jie"], "rule_version": "rule-v1", "observed_at": "2026-06-08T08:00:00Z", "at": "2026-06-08T08:00:00Z"},
+    {"id": "ev-jie-zhe-work", "kind": "evidence", "evidence_id": "ev-jie-zhe-work", "person_id": "person-apprentice-jie", "unit": "二十四褶", "source_type": "shop_work", "org_id": "org-studio-laofengtai", "work_id": "work-20260608-01", "work_title": "二十四褶烧麦出屉样品", "contribution": "负责馅料调制与备料，未参与捏褶", "collaborators": ["person-apprentice-sui"], "rule_version": "rule-v1", "observed_at": "2026-06-08T08:00:00Z", "at": "2026-06-08T08:05:00Z"},
+    {"id": "ev-sui-zhe-obs-private", "kind": "evidence", "evidence_id": "ev-sui-zhe-obs-private", "person_id": "person-apprentice-sui", "unit": "二十四褶", "source_type": "mentor_observation", "org_id": "org-studio-laofengtai", "visibility": "private", "work_title": "师傅私评：高峰时段手速仍需加强", "rule_version": "rule-v1", "observed_at": "2026-06-12T10:00:00Z", "at": "2026-06-12T10:00:00Z"},
+
+    {"id": "ev-sui-zheng-grade", "kind": "evidence", "evidence_id": "ev-sui-zheng-grade", "person_id": "person-apprentice-sui", "unit": "蒸制", "source_type": "school_grade", "org_id": "org-school-dongcheng", "course_id": "course-2026-fall", "stage": "独立制作", "grade": "B+", "rule_version": "rule-v1", "observed_at": "2026-06-15T10:00:00Z", "at": "2026-06-15T10:00:00Z"},
+    {"id": "ev-sui-zheng-obs", "kind": "evidence", "evidence_id": "ev-sui-zheng-obs", "person_id": "person-apprentice-sui", "unit": "蒸制", "source_type": "mentor_observation", "org_id": "org-studio-laofengtai", "visibility": "public", "work_title": "火候与出屉观察记录", "rule_version": "rule-v1", "observed_at": "2026-06-20T10:00:00Z", "at": "2026-06-20T10:00:00Z"},
+
+    {"id": "ev-bing-ganpi-grade", "kind": "evidence", "evidence_id": "ev-bing-ganpi-grade", "person_id": "person-apprentice-bing", "unit": "擀皮", "source_type": "school_grade", "org_id": "org-school-dongcheng", "course_id": "course-2026-fall", "stage": "跟做", "grade": "B", "rule_version": "rule-v1", "observed_at": "2026-05-12T10:00:00Z", "at": "2026-05-12T10:00:00Z"},
+    {"id": "ev-bing-ganpi-obs", "kind": "evidence", "evidence_id": "ev-bing-ganpi-obs", "person_id": "person-apprentice-bing", "unit": "擀皮", "source_type": "mentor_observation", "org_id": "org-studio-laofengtai", "visibility": "public", "work_title": "擀皮观察记录", "rule_version": "rule-v1", "observed_at": "2026-05-22T10:00:00Z", "at": "2026-05-22T10:00:00Z"},
+    {"id": "ev-bing-zhe-work", "kind": "evidence", "evidence_id": "ev-bing-zhe-work", "person_id": "person-apprentice-bing", "unit": "二十四褶", "source_type": "shop_work", "org_id": "org-studio-laofengtai", "work_id": "work-20260615-07", "work_title": "烧麦练习作品", "contribution": "独立完成", "rule_version": "rule-v1", "observed_at": "2026-06-15T08:00:00Z", "at": "2026-06-15T08:00:00Z"},
+
+    {"id": "confirm-sui-ganpi", "kind": "joint_confirmation", "person_id": "person-apprentice-sui", "unit": "擀皮", "school_org_id": "org-school-dongcheng", "studio_org_id": "org-studio-laofengtai", "at": "2026-06-25T09:00:00Z"},
+    {"id": "confirm-sui-zhe", "kind": "joint_confirmation", "person_id": "person-apprentice-sui", "unit": "二十四褶", "school_org_id": "org-school-dongcheng", "studio_org_id": "org-studio-laofengtai", "at": "2026-06-25T09:05:00Z"},
+    {"id": "confirm-sui-zheng", "kind": "joint_confirmation", "person_id": "person-apprentice-sui", "unit": "蒸制", "school_org_id": "org-school-dongcheng", "studio_org_id": "org-studio-laofengtai", "at": "2026-06-25T09:10:00Z"},
+    {"id": "confirm-bing-ganpi", "kind": "joint_confirmation", "person_id": "person-apprentice-bing", "unit": "擀皮", "school_org_id": "org-school-dongcheng", "studio_org_id": "org-studio-laofengtai", "at": "2026-06-25T09:15:00Z"},
+
+    {"id": "rule-v2", "kind": "rule", "version": "rule-v2", "at": "2026-09-01T09:00:00Z"},
+    {"id": "ev-sui-foodsafety", "kind": "evidence", "evidence_id": "ev-sui-foodsafety", "person_id": "person-apprentice-sui", "unit": "食品安全合规", "source_type": "school_grade", "org_id": "org-school-dongcheng", "course_id": "course-2026-fall", "stage": "独立制作", "grade": "合格", "rule_version": "rule-v2", "observed_at": "2026-09-05T10:00:00Z", "at": "2026-09-05T10:00:00Z"},
+
+    {"id": "consent-sui-xicheng", "kind": "consent", "consent_id": "consent-sui-xicheng", "person_id": "person-apprentice-sui", "target_org_id": "org-studio-xicheng", "scope": "confirmed_abilities", "at": "2026-09-10T09:00:00Z"},
+
+    {"id": "shift-20261005-am", "kind": "shift", "shift_id": "shift-20261005-am", "position_id": "position-production", "mentor_id": "person-mentor-li", "start": "2026-10-05T06:00:00Z", "end": "2026-10-05T12:00:00Z", "at": "2026-09-20T09:00:00Z"},
+    {"id": "assignment-seed-shift", "kind": "assignment", "shift_id": "shift-20261005-am", "at": "2026-09-20T09:05:00Z"}
   ]
 }
